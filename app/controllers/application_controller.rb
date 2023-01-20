@@ -2,7 +2,7 @@ class ApplicationController < ActionController::Base
   rescue_from CanCan::AccessDenied, with: :handle_auth_error
 
   protect_from_forgery with: :null_session
-  before_action :update_allowed_parameters, if: :devise_controller?
+  before_action :update_allowed_parameters, :authenticate_user!, if: :devise_controller?
 
   protected
 
